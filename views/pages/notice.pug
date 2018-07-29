@@ -1,0 +1,21 @@
+extends ../layout1
+
+block content
+    .container
+        .row
+            if status == '0'
+                .col-md-12
+                    .thumbnail.clear-padding
+                        .caption
+                            h4.text-center #{msg}
+                        if result.msg == "请重新登录"
+                            p.text-center: a.btn.btn-primary(href="/logout" role="button") #{result.msg}
+                        else
+                            p.text-center: a.btn.btn-primary(href="/" role="button") 返回首页
+            else
+                .col-md-12
+                    .thumbnail.clear-padding
+                        .caption
+                            h4.text-center #{msg}
+                            h4.text-center #{results}
+                            p.text-center: a.btn.btn-primary(href="/" role="button") 返回首页

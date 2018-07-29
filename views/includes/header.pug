@@ -1,0 +1,69 @@
+.jumbotron.header-bg
+    h1.text-center#bigtitle
+    .container
+        .row
+            .page-header.clearfix
+                .col-md-4
+                    h3= title
+                    a(href="/") 返回首页
+                .col-md-8
+                    form(method ='GET', action='/results')
+                        .input-group.col-sm-4.pull-right
+                            input.form-control(type='text', name='q')
+                            span.input-group-btn
+                                button.btn.btn-default(type='submit') 搜索
+            .navbar.navbar-default.navbar-fixed-top
+                .container
+                    .navbar-header
+                        img(src="../../static/logo.svg" style = "width:80px;height:60px")
+                        p.navbar-text.navbar-right S-top's Node.js Demo
+                    if user
+                        p.navbar-text.navbar-right
+                            span 欢迎您，#{user.name}
+                            span &nbsp;|&nbsp;
+                            a.navbar-link(href="/logout") 注销
+                            span &nbsp;|&nbsp;
+                            a.navbar-link(href="/user/" + user._id) 个人信息
+                            span &nbsp;|&nbsp;
+                            a.navbar-link(href="/movie/movieList") 视频列表
+                            if user.name == 'stop'
+                                span &nbsp;|&nbsp;
+                                a.navbar-link(href="/user/usersList") 用户列表
+                    else
+                        p.navbar-text.navbar-right
+                            a.navbar-link(href="#", data-toggle="modal", data-target="#registeModal") 注册
+                            span &nbsp;|&nbsp;
+                            a.navbar-link(href="#", data-toggle="modal", data-target="#loginModal") 登录
+#registeModal.modal.fade
+    .modal-dialog
+        .modal-content
+            form(method="POST", action="/user/registe")
+                .modal-header 注册
+                .modal-body
+                    .form-group
+                        label(for="signupName") 用户名
+                        input#signupName.form-control(name="user[name]", type="text")
+                    .form-group
+                        label(for="signupPassword") 密码
+                        input#signupPassword.form-control(name="user[password]", type="text")
+                    .form-group
+                        label(for="signinEmail") 邮箱
+                        input#signinEmail.form-control(name="user[email]", type="text")
+                .modal-footer
+                    button.btn.btn-default(type="button", data-dismiss="modal") 关闭
+                    button.btn.btn-success(type="submit") 提交
+#loginModal.modal.fade
+    .modal-dialog
+        .modal-content
+            form(method="POST", action="/user/login")
+                .modal-header 登录
+                .modal-body
+                    .form-group
+                        label(for="signinName") 用户名
+                        input#signinName.form-control(name="user[name]", type="text")
+                    .form-group
+                        label(for="signinPassword") 密码
+                        input#signinPassword.form-control(name="user[password]", type="text")
+                .modal-footer
+                    button.btn.btn-default(type="button", data-dismiss="modal") 关闭
+                    button.btn.btn-success(type="submit") 提交

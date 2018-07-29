@@ -1,0 +1,36 @@
+extends ../layout
+
+block content
+    .container
+        .row
+            .col-md-5
+                img(src="../../static/bg.jpeg",width="600",height="600",align="middle")
+            .col-md-7
+                form.form-horizontal(method="post",action="/user/update")
+                    .form-group
+                        label.col-sm-5.control-label(for="inputId") 用户编号
+                        .col-sm-7
+                            input#inputId.form-control(type="text", name="user[_id]", readonly="readonly", value=user._id)
+                    .form-group
+                        label.col-sm-5.control-label(for="inputName") 用户名称
+                        .col-sm-7
+                            input#inputName.form-control(type="text", name="user[name]", readonly="readonly", value=user.name)
+                    .form-group
+                        label.col-sm-5.control-label(for="inputPassword") 用户密码
+                        .col-sm-7
+                            input#inputPassword.form-control(type="text", name="user[password]", value=user.password)
+                    .form-group
+                        label.col-sm-5.control-label(for="inputEmail") 用户邮箱
+                        .col-sm-7
+                            input#inputEmail.form-control(type="text", name="user[email]", readonly="readonly", value=user.email)
+                    .form-group
+                        label.col-sm-5.control-label(for="inputCreateAt") 创建时间
+                        .col-sm-7
+                            input#inputCreateAt.form-control(type="text", name="user[createAt]", readonly="readonly", value=moment(user.meta.createAt).format('MM/DD/YYYY'))
+                    .form-group
+                        label.col-sm-5.control-label(for="inputCreateAt") 修改时间
+                        .col-sm-7
+                            input#inputCreateAt.form-control(type="text", name="user[updateAt]", readonly="readonly", value=moment(user.meta.updateAt).format('MM/DD/YYYY'))
+                    .form-group
+                        .col-sm-offset-5.col-sm-9
+                            button.btn.btn-info(type="submit") 修改密码

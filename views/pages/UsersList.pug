@@ -1,0 +1,27 @@
+extends ../layout
+
+block content
+    .container
+        .row
+            table.table.table-hover.table-bordered
+                thead
+                    tr
+                        th 名字
+                        th 密码
+                        th 邮箱
+                        th 创建时间
+                        th 更新时间
+                        th 查看详情
+                        th 删除
+                    tbody
+                        each user in users
+                            tr(class="user-id-" + user._id)
+                                td #{user.name}
+                                td #{user.password}
+                                td #{user.email}
+                                td #{moment(user.meta.creatAt).format('MM/DD/YYYY')}
+                                td #{moment(user.meta.updateAt).format('MM/DD/YYYY')}
+                                td: a(target="_blank", href="/user/userDetail/" + user._id)  查看详情
+                                td
+                                    button.btn.btn-danger.del(type="button",data-id=user._id) 删除
+    script(src="/static/deleteUser.js")

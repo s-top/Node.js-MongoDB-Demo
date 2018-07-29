@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+    .container
+        .row
+            .col-md-7
+            if movie.flash == "无"
+                img(src=movie.poster, alt=movie.title, width="600", height="600")
+            else
+                video(controls="" autoplay="" name="media" width="600" height="600")
+                    source(src=movie.flash type="video/mp4")
+            .col-md-5
+                dl.dl-horizontal
+                    .form-group
+                        dt 视频名字
+                        dd= movie.title
+                    .form-group
+                        dt 作者
+                        dd= movie.doctor
+                    .form-group
+                        dt 国家
+                        dd= movie.country
+                    .form-group
+                        dt 语言
+                        dd= movie.language
+                    .form-group
+                        dt 上映年份
+                        dd= movie.year
+                    .form-group
+                        dt 简介
+                        dd= movie.summary
